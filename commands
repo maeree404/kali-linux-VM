@@ -1,0 +1,123 @@
+Kali Linux VM — Commands Used
+
+1. System Information
+
+> `cat /etc/os-release`
+Purpose: Displays the Kali Linux distribution and version.
+
+SOC relevance: Identifies the operating system during system triage.
+
+> `uname -a`
+Purpose: Displays kernel and system information.
+
+SOC relevance: Helps establish the system environment during an investigation.
+
+> `hostname`
+Purpose: Displays the system's hostname.
+
+SOC relevance: Helps identify which machine is being investigated. Review the output before sharing screenshots.
+
+> `id`
+Purpose: Displays the current user's ID and group memberships.
+
+SOC relevance: Helps understand the account's identity and group permissions.
+
+> `uptime`
+Purpose: Shows how long the system has been running and its load averages.
+
+SOC relevance: Provides context about system availability and resource load.
+
+---
+
+2. Storage and Memory
+
+> `lsblk`
+Purpose: Lists available block devices and partitions.
+
+SOC relevance: Helps understand the system's storage layout.
+
+> `free -h`
+Purpose: Displays memory usage in a human-readable format.
+
+SOC relevance: Helps investigate unusual memory consumption or resource constraints.
+
+> `df -h`
+Purpose: Displays filesystem disk space usage.
+
+SOC relevance: Helps identify storage capacity issues that may affect system operations or logging.
+
+---
+
+3. Network Configuration and Connectivity
+
+> `ip addr`
+Purpose: Displays network interfaces and their IP addresses.
+
+SOC relevance: Helps identify the system's network interfaces and assigned addresses.
+
+> `ip route`
+Purpose: Displays the routing table.
+
+SOC relevance: Helps determine how network traffic is routed and identify the default gateway.
+
+> `getent hosts kali.org`
+Purpose: Looks up the hostname using the system's configured name-resolution sources.
+
+SOC relevance: Helps troubleshoot DNS and hostname-resolution issues.
+
+> `ping -c 4 1.1.1.1`
+Purpose: Sends four ICMP echo requests to an IP address.
+
+SOC relevance: Tests basic IP connectivity. A failed ping does not necessarily mean the destination is offline.
+
+> `ping -c 4 kali.org`
+Purpose: Sends four ICMP echo requests to a hostname.
+
+SOC relevance: Helps test hostname resolution and connectivity together. Interpret the result alongside the DNS lookup.
+
+> `ss -tuln`
+Purpose: Lists listening TCP and UDP sockets without resolving service names.
+
+SOC relevance: Helps identify listening ports and services that may require further investigation.
+
+> `ip -s link`
+Purpose: Displays network interfaces and packet statistics, including errors and drops.
+
+SOC relevance: Helps troubleshoot network-interface issues and inspect traffic-related counters.
+
+---
+
+4. Processes and Permissions
+
+> `ps aux`
+Purpose: Lists running processes and associated user and resource information.
+
+SOC relevance: Helps establish which processes are running and identify suspicious activity for further investigation.
+
+> `sudo -l`
+Purpose: Lists commands the current user is permitted to run through `sudo`.
+
+SOC relevance: Helps assess administrative privileges and potential privilege-escalation exposure.
+
+---
+5. Files and Directories
+
+> `ls -lah`
+Purpose: Lists files, including hidden entries, with detailed information and human-readable file sizes.
+
+SOC relevance: Helps inspect files, permissions, ownership and directory contents during basic triage.
+
+---
+
+6. System Logs
+
+> `journalctl -n 30 --no-pager`
+Purpose: Displays the latest 30 entries from the systemd journal without opening an interactive pager.
+
+SOC relevance: Introduces Linux log review, which helps with troubleshooting and investigating system events.
+
+---
+
+## Key Takeaway
+
+These commands provided hands-on practice with Linux system identification, resource monitoring, network troubleshooting, process inspection, permissions and log review. 
